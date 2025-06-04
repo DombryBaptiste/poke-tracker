@@ -31,3 +31,17 @@
   object-fit: contain;
   cursor: pointer;
 }
+
+@media (max-width: 650px) {
+  .image-pokemon {
+    width: 40px;
+    height: 40px;
+  }
+}
+
+@media (max-width: 800px) {
+  .image-pokemon {
+    width: 60px;
+    height: 60px;
+  }
+}
