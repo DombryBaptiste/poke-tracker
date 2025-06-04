@@ -10,6 +10,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
+import { PokemonColor } from './entities/pokemonSelected';
 
 @Component({
   selector: 'app-root',
@@ -28,6 +29,8 @@ export class AppComponent {
   data: AppData;
 
   @ViewChild('fileInput') fileInput!: ElementRef<HTMLInputElement>;
+  
+  public PokemonColor = PokemonColor;
 
   constructor(public pokeService: PokemonService) {
     this.data = this.pokeService.data();

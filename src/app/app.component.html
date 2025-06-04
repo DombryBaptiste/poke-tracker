@@ -1,30 +1,53 @@
-<div class="header">
+<div class="page-container">
+  <div class="sticky-info">
+    <p><span class="captured"></span>
+      Captured : {{ this.pokeService.getTotalPokemon(PokemonColor.Black) }} /
+      {{ this.pokeService.getLimit() }}
+    </p>
+    <p><span class="evolved"></span> To Evolved : {{ this.pokeService.getTotalPokemon(PokemonColor.Red) }}</p>
+    <p><span class="traded"></span> To Trade : {{ this.pokeService.getTotalPokemon(PokemonColor.Blue) }}</p>
+    <div class="left">
+        <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Menu">
+          <mat-icon>more_vert</mat-icon>
+        </button>
 
-    <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Menu">
-        <mat-icon>more_vert</mat-icon>
-    </button>
-
-    <mat-menu #menu="matMenu">
-        <button mat-menu-item (click)="pokeService.downloadData()">
+        <mat-menu #menu="matMenu">
+          <button mat-menu-item (click)="pokeService.downloadData()">
             <mat-icon>cloud_download</mat-icon>
             <span>Dowload Save</span>
-        </button>
-        <button mat-menu-item (click)="triggerFileInput()">
+          </button>
+          <button mat-menu-item (click)="triggerFileInput()">
             <mat-icon>cloud_upload</mat-icon>
             <span>Import Save</span>
-        </button>
-    </mat-menu>
+          </button>
+        </mat-menu>
 
-    <input #fileInput type="file" accept=".json" (change)="pokeService.importData($event)" hidden>
+        <input
+          #fileInput
+          type="file"
+          accept=".json"
+          (change)="pokeService.importData($event)"
+          hidden
+        />
 
-    <mat-form-field class="field-select" appearance="fill">
-        <mat-label>Choisir la génération</mat-label>
-        <mat-select class="select-gen" [(ngModel)]="data.genSelected" (selectionChange)="onGenerationChange($event)">
+        <mat-form-field class="field-select" appearance="fill">
+          <mat-label>Choose generation</mat-label>
+          <mat-select
+            class="select-gen"
+            [(ngModel)]="data.genSelected"
+            (selectionChange)="onGenerationChange($event)"
+          >
             @for (generation of pokeService.generations; track generation) {
-                <mat-option [value]="generation">Génération {{ generation }}</mat-option>
+            <mat-option [value]="generation"
+              >Generation {{ generation }}</mat-option
+            >
             }
-        </mat-select>
-    </mat-form-field>
-</div>
+          </mat-select>
+        </mat-form-field>
+      </div>
+  </div>
 
-<app-all-box></app-all-box>
+  <div class="main-content">
+    <app-all-box></app-all-box>
+  </div>
+</div>

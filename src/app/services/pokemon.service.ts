@@ -1,18 +1,19 @@
 import { computed, effect, Injectable, signal } from '@angular/core';
 import { AppData } from '../entities/appData';
-import { PokemonSelected } from '../entities/pokemonSelected';
+import { PokemonColor, PokemonSelected } from '../entities/pokemonSelected';
 
 @Injectable({
   providedIn: 'root'
 })
 export class PokemonService {
   public step = 30
-  public generations = [1, 2, 3, 4];
+  public generations = [1, 2, 3, 4, 5];
   public numberLimitByGenerations = [
     { generation: 1, limits: 151 },
     { generation: 2, limits: 251 },
     { generation: 3, limits: 386 },
     { generation: 4, limits: 493 },
+    { generation: 5, limits: 649 }
   ];
 
   public data = signal<AppData>({
@@ -143,6 +144,17 @@ export class PokemonService {
     reader.readAsText(file);
   }
 
+  public getTotalPokemon(color: PokemonColor): number {
+    const limit = this.numberLimitByGenerations.find(n => n.generation == this.data().genSelected)?.limits
+    if(limit)
+    {
+      return this.data().pokemonSelected.filter(p =>
+        p.color == color &&
+        p.id <= limit).length
+    }
+    return 0;
+  }
+
   private isValidAppData(data: any): data is AppData {
     return (
       typeof data === 'object' &&
@@ -150,5 +162,11 @@ export class PokemonService {
       typeof data.genSelected === 'number' &&
       Array.isArray(data.pokemonSelected)
     )
+  }
+
+  public getLimit(): number
+  {
+    const limit = this.numberLimitByGenerations.find(n => n.generation == this.data().genSelected)?.limits
+    return limit ? limit : 0;
   }
 }

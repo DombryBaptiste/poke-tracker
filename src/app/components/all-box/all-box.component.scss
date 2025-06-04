@@ -8,3 +8,17 @@
     margin: 0 auto;
     justify-content: center;
 }
+
+@media (max-width: 1200px) {
+    .container-box {
+        
+        display: flex;
+        flex-direction: column;
+        width: 90%;
+        margin: 0 auto;
+        gap: 5px;
+        justify-content: center;
+        flex-wrap: wrap;
+        flex-direction: initial;
+    }
+}

@@ -6,7 +6,8 @@
         @for(number of listLimit; track number){
             <img [src]="'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/' + number + '.png'"
             (click)="onClickPokemon(number)"
-            [style.backgroundColor]="getPokemonColor(number)"/>
+            [style.backgroundColor]="getPokemonColor(number)"
+            class="image-pokemon"/>
         }
         </div>
 </div>
