@@ -1,7 +1,30 @@
-<select [(ngModel)]="data.genSelected" (change)="onGenerationChange($event)">
-    @for (generation of pokeService.generations; track generation) {
-    <option [value]="generation">Génération {{ generation }}</option>
-    }
-</select>
+<div class="header">
+
+    <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Menu">
+        <mat-icon>more_vert</mat-icon>
+    </button>
+
+    <mat-menu #menu="matMenu">
+        <button mat-menu-item (click)="pokeService.downloadData()">
+            <mat-icon>cloud_download</mat-icon>
+            <span>Dowload Save</span>
+        </button>
+        <button mat-menu-item (click)="triggerFileInput()">
+            <mat-icon>cloud_upload</mat-icon>
+            <span>Import Save</span>
+        </button>
+    </mat-menu>
+
+    <input #fileInput type="file" accept=".json" (change)="pokeService.importData($event)" hidden>
+
+    <mat-form-field class="field-select" appearance="fill">
+        <mat-label>Choisir la génération</mat-label>
+        <mat-select class="select-gen" [(ngModel)]="data.genSelected" (selectionChange)="onGenerationChange($event)">
+            @for (generation of pokeService.generations; track generation) {
+                <mat-option [value]="generation">Génération {{ generation }}</mat-option>
+            }
+        </mat-select>
+    </mat-form-field>
+</div>
 
 <app-all-box></app-all-box>

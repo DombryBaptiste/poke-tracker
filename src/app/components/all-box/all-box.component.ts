@@ -7,7 +7,7 @@ import { CommonModule } from '@angular/common';
   selector: 'app-all-box',
   imports: [BoxComponent, CommonModule],
   templateUrl: './all-box.component.html',
-  styleUrl: './all-box.component.css'
+  styleUrl: './all-box.component.scss'
 })
 export class AllBoxComponent implements OnInit {
 

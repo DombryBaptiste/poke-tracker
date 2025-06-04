@@ -32,7 +32,6 @@ export class PokemonService {
       }
     }
     effect(() => {
-        console.log("EFFECT")
         localStorage.setItem('data', JSON.stringify(this.data()));
       });
   }
@@ -53,6 +52,11 @@ export class PokemonService {
     }
     return boxes;
   })
+
+  public setData(appData: AppData)
+  {
+    this.data.set(appData);
+  }
 
 
   public setSelectedGeneration(gen: number) {
@@ -91,5 +95,60 @@ export class PokemonService {
         pokemonSelected: filteredList
       };
     });
+  }
+
+  public downloadData()
+  {
+    const blob = new Blob([JSON.stringify(this.data(), null, 2)], {
+      type: 'application/json'
+    });
+
+    const url = window.URL.createObjectURL(blob);
+    const link = document.createElement('a');
+    link.href = url;
+    link.download = 'sauvegarde.json';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    window.URL.revokeObjectURL(url);
+  }
+
+  public importData(event: Event)
+  {
+    const input = event.target as HTMLInputElement;
+    const file = input.files?.[0];
+
+    if (!file) return;
+
+    const reader = new FileReader();
+
+    reader.onload = () => {
+      try {
+        const raw = JSON.parse(reader.result as string);
+
+        if (!this.isValidAppData(raw)) {
+          throw new Error("Le fichier importé ne correspond pas au format attendu.");
+        }
+
+      const importedData = raw as AppData;
+      console.log('Données importées :', importedData);
+
+        this.setData(importedData);
+
+      } catch (error) {
+        console.error('Erreur de parsing du fichier importé', error);
+      }
+    };
+
+    reader.readAsText(file);
+  }
+
+  private isValidAppData(data: any): data is AppData {
+    return (
+      typeof data === 'object' &&
+      data !== null &&
+      typeof data.genSelected === 'number' &&
+      Array.isArray(data.pokemonSelected)
+    )
   }
 }
