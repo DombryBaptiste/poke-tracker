@@ -1,0 +1,7 @@
+<div class="container-box">
+    @for(boxIndex of pokeService.boxNumber(); track boxIndex)
+    {
+        <app-box [boxName]="'Boite'" [limits]="boxIndex"></app-box>
+    }
+</div>
+
