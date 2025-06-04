@@ -1,0 +1,39 @@
+@use '@angular/material' as mat;
+
+body {
+    background-color: #E6E8FF;
+    font-family: Arial, Helvetica, sans-serif
+}
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.select-gen {
+  @include mat.select-overrides((
+    panel-background-color: #DCD6F7,
+    enabled-trigger-text-color: rgb(87, 85, 81)
+
+  ));
+
+  @include mat.option-overrides((
+    label-text-color: rgb(87, 85, 81),
+    selected-state-label-text-color: rgb(212, 44, 212)
+    
+  ));
+}
+
+.field-select {
+  @include mat.form-field-overrides((
+    filled-container-color: #FFDEE9,
+    filled-label-text-color: rgb(87, 85, 81),
+    filled-input-text-placeholder-color: rgb(87, 85, 81),
+    filled-focus-label-text-color: purple,
+    filled-hover-label-text-color: purple
+    
+  ));
+}
+
+.select-gen .mat-mdc-select-value-text
+{
+  // color: green !important;
+}

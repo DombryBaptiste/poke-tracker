@@ -1,7 +1,12 @@
-<select [(ngModel)]="data.genSelected" (change)="onGenerationChange($event)">
-    @for (generation of pokeService.generations; track generation) {
-    <option [value]="generation">Génération {{ generation }}</option>
-    }
-</select>
+<div class="header">
+    <mat-form-field class="field-select" appearance="fill">
+        <mat-label>Choisir la génération</mat-label>
+        <mat-select class="select-gen" [(ngModel)]="data.genSelected" (selectionChange)="onGenerationChange($event)">
+            @for (generation of pokeService.generations; track generation) {
+                <mat-option [value]="generation">Génération {{ generation }}</mat-option>
+            }
+        </mat-select>
+    </mat-form-field>
+</div>
 
 <app-all-box></app-all-box>

@@ -2,23 +2,29 @@
 {
     border-radius: 50px;
     border: solid;
+    overflow: hidden;
 }
 
 .header-box
 {
-
+  background-color: #FFDEE9;
+  border-bottom: solid;
 }
 
 .box-name
 {
+    font-size: 2rem;
     text-align: center;
+    margin: 0;
+    padding: 15px 0;
 }
 
-.box-body {
+.body-box {
   display: grid;
   grid-template-columns: repeat(6, 1fr); /* 6 colonnes */
   gap: 8px;
   padding: 10px;
+  background-color: #DCD6F7;
 }
 
 .box-body img {

@@ -2,7 +2,7 @@
     <div class="header-box">
         <p class="box-name">{{ boxName }}</p>
     </div>
-    <div class="box-body">
+    <div class="body-box">
         @for(number of listLimit; track number){
             <img [src]="'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/' + number + '.png'"
             (click)="onClickPokemon(number)"

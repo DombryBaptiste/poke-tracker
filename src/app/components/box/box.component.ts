@@ -6,7 +6,7 @@ import { PokemonColor, PokemonSelected } from '../../entities/pokemonSelected';
   selector: 'app-box',
   imports: [],
   templateUrl: './box.component.html',
-  styleUrl: './box.component.css'
+  styleUrl: './box.component.scss'
 })
 export class BoxComponent implements OnInit{
 
