@@ -1,7 +1,7 @@
 <div class="container-box">
-    @for(boxIndex of pokeService.boxNumber(); track boxIndex)
+    @for(boxIndex of pokeService.boxNumber(); let boxId = $index; track boxIndex)
     {
-        <app-box [boxName]="'Boite'" [limits]="boxIndex"></app-box>
+        <app-box [boxName]="'Boite ' + (boxId + 1)" [limits]="boxIndex"></app-box>
     }
 </div>
 
