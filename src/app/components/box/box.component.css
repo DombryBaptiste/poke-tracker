@@ -1,0 +1,28 @@
+.box
+{
+    border-radius: 50px;
+    border: solid;
+}
+
+.header-box
+{
+
+}
+
+.box-name
+{
+    text-align: center;
+}
+
+.box-body {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr); /* 6 colonnes */
+  gap: 8px;
+  padding: 10px;
+}
+
+.box-body img {
+  width: 72px;
+  height: 72px;
+  object-fit: contain;
+}
